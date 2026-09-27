@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TeamShelf · 함께 일하는 도구들</title>
+  <link rel="icon" href="/static/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="TeamShelf 홈"><img src="/static/mark.svg" alt="">TeamShelf<span>®</span></a>
+    <div class="workspace"><span class="workspace-icon">T</span><div>우리 팀 워크스페이스<small>OFFICE ESSENTIALS</small></div></div>
+    <p class="nav-label">WORKSPACE</p>
+    <nav aria-label="메인 메뉴">
+      <button class="nav-item active" data-view="catalog"><span>▦</span>비품 둘러보기<span class="nav-count">6</span></button>
+      <button class="nav-item" data-view="orders"><span>▤</span>내 신청 내역</button>
+      <button class="nav-item" data-view="admin" id="admin-nav" hidden><span>◇</span>승인 관리</button>
+    </nav>
+    <div class="sidebar-note"><span class="status-dot"></span>작은 도구, 더 나은 하루<p>팀에 필요한 물건을<br>한 곳에서 간편하게.</p></div>
+    <div class="user-card"><div class="avatar" id="avatar">G</div><div><strong id="user-name">게스트</strong><small id="user-role">둘러보는 중</small></div><button id="account-button" class="icon-button" aria-label="로그인">↗</button></div>
+  </aside>
+  <main>
+    <header class="topbar"><span>워크스페이스 <span class="slash">/</span> <strong id="breadcrumb">비품 둘러보기</strong></span><div><span class="local-badge">LOCAL DEMO</span><button id="login-button" class="text-button">로그인 →</button></div></header>
+    <section class="page" id="catalog-view">
+      <div class="eyebrow">THE EVERYDAY COLLECTION / 01</div>
+      <div class="title-row"><div><h1>좋은 일은,<br>좋은 도구에서.</h1><p class="intro">더 편안한 업무를 위한 우리 팀의 셀렉션.<br>필요한 비품을 고르면, 팀이 준비해 드릴게요.</p></div><div class="hero-art" aria-hidden="true"><div class="art-paper"><i></i><i></i><i></i><i></i></div><div class="art-pen"></div><div class="art-cup"></div><span>MADE FOR<br>YOUR WORKDAY.</span></div></div>
+      <div class="collection-toolbar"><div class="tabs" role="group" aria-label="상품 분류"><button class="tab active" data-category="">전체</button><button class="tab" data-category="데스크">데스크</button><button class="tab" data-category="문구">문구</button><button class="tab" data-category="디지털">디지털</button><button class="tab" data-category="라이프">라이프</button></div><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" maxlength="80" placeholder="필요한 비품 검색" aria-label="비품 검색"></label></div>
+      <div class="collection-meta"><span id="product-count">컬렉션을 불러오는 중</span><span>필요한 만큼, 신중하게.</span></div>
+      <div class="product-grid" id="products" aria-live="polite"></div>
+    </section>
+    <section class="page" id="orders-view" hidden><div class="eyebrow">YOUR REQUESTS</div><h1 class="small-title">내 신청 내역</h1><p class="intro">신청부터 승인까지, 진행 상황을 확인하세요.</p><div id="orders-content"></div></section>
+    <section class="page" id="admin-view" hidden><div class="eyebrow">TEAM OPERATIONS</div><h1 class="small-title">승인 관리</h1><p class="intro">팀원들의 비품 신청을 검토하세요.</p><div id="admin-content"></div></section>
+    <footer><span>TeamShelf — Tools for a better workday.</span><span id="build-info">샘플 데이터로 운영됩니다.</span></footer>
+  </main>
+  <dialog id="login-dialog"><form id="login-form"><button type="button" class="close" data-close="login-dialog" aria-label="닫기">×</button><div class="eyebrow">WELCOME BACK</div><h2>우리 팀으로 로그인</h2><p>로컬에서 생성된 샘플 계정을 사용하세요.</p><label>이메일<input name="email" type="email" autocomplete="username" placeholder="alice@teamshelf.test" required></label><label>비밀번호<input name="password" type="password" autocomplete="current-password" required></label><p class="form-error" id="login-error" role="alert"></p><button class="primary" type="submit">로그인</button><small class="hint">계정 정보: 프로젝트 밖의<br>teamshelf-runtime/accounts.json</small></form></dialog>
+  <dialog id="order-dialog"><form id="order-form"><button type="button" class="close" data-close="order-dialog" aria-label="닫기">×</button><div class="eyebrow">MAKE IT YOURS</div><h2 id="order-title">비품 신청</h2><p id="order-description"></p><input type="hidden" name="product_id"><label>수량<input name="quantity" type="number" min="1" max="20" value="1" required></label><label>신청 메모<textarea name="note" maxlength="300" rows="3" placeholder="어떤 업무에 필요한가요? (선택)"></textarea></label><p class="form-error" id="order-error" role="alert"></p><button class="primary" type="submit">비품 신청하기</button><small class="hint">신청하면 관리자 검토 후 승인됩니다.</small></form></dialog>
+  <div id="toast" role="status" hidden></div>
+</body>
+</html>

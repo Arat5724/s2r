@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f9faf7">
+  <title>제품 업데이트 · ReleaseHub</title>
+  <link rel="icon" type="image/svg+xml" href="/mark.svg">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body id="top">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="wordmark" href="/" aria-label="ReleaseHub 홈"><img src="/mark.svg" width="31" height="31" alt=""><span>ReleaseHub</span></a>
+      <nav class="main-nav" aria-label="주요 탐색">
+        <a class="current" href="#releases" aria-current="page">릴리스</a>
+        <a href="#documents">문서</a>
+      </nav>
+      <div class="header-context"><span class="context-mark" aria-hidden="true"></span> 로컬 카탈로그</div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="breadcrumbs"><a href="/">ReleaseHub</a><span>/</span><span>업데이트</span></div>
+
+    <section class="page-heading" aria-labelledby="page-title">
+      <div>
+        <p class="overline">PRODUCT CHANGELOG <span>—</span> 2026</p>
+        <h1 id="page-title">제품 업데이트<span>.</span></h1>
+      </div>
+      <p>제품과 플랫폼에 배포된 변경 사항을 확인하세요. 버전과 채널별로 검색하고, 필요한 문서를 바로 열 수 있습니다.</p>
+    </section>
+
+    <div class="overview-strip" aria-label="카탈로그 요약">
+      <div><span class="strip-label">등록된 릴리스</span><strong id="release-count">06</strong></div>
+      <div><span class="strip-label">제품 채널</span><strong id="channel-count">04</strong></div>
+      <div class="strip-latest"><span class="strip-label">최근 업데이트</span><strong><span id="latest-product">Atlas CLI</span> <small>v<span id="latest-version">3.4.2</span></small></strong></div>
+      <a href="#releases">목록 살펴보기 <span aria-hidden="true">↘</span></a>
+    </div>
+
+    <div class="workspace" id="releases">
+      <aside class="filter-pane" aria-label="릴리스 필터">
+        <div class="pane-title">제품 채널</div>
+        <div class="filter-list" role="group" aria-label="제품 채널 필터">
+          <button class="filter active" type="button" data-channel="all" aria-pressed="true"><span>전체 릴리스</span><small id="filter-all-count">06</small></button>
+          <button class="filter" type="button" data-channel="Developer tools" aria-pressed="false"><span>개발 도구</span></button>
+          <button class="filter" type="button" data-channel="SDK" aria-pressed="false"><span>SDK</span></button>
+          <button class="filter" type="button" data-channel="Infrastructure" aria-pressed="false"><span>인프라</span></button>
+          <button class="filter" type="button" data-channel="Design system" aria-pressed="false"><span>디자인 시스템</span></button>
+        </div>
+        <p class="filter-hint">채널을 선택하면 해당 제품의 기록만 표시됩니다.</p>
+      </aside>
+
+      <section class="feed" aria-labelledby="feed-title">
+        <div class="feed-heading"><div><p class="overline">RELEASE ARCHIVE</p><h2 id="feed-title">릴리스 기록</h2></div><span id="result-count">6개의 업데이트</span></div>
+        <div class="catalog-toolbar">
+          <label class="search-box">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3" stroke="currentColor" stroke-width="1.7"/><path d="m15.5 15.5 4.2 4.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            <input id="search" type="search" autocomplete="off" placeholder="제품명으로 검색" aria-label="제품명으로 검색">
+            <kbd>Ctrl K</kbd>
+          </label>
+          <a id="preview-link" class="preview-link" href="/search/preview?q=" target="_blank" rel="noopener">검색어 미리보기 <span aria-hidden="true">↗</span></a>
+        </div>
+        <div id="release-grid" class="release-list" aria-live="polite"><div class="loading">릴리스를 불러오는 중…</div></div>
+        <div id="catalog-message" class="catalog-message" hidden></div>
+      </section>
+
+      <aside class="utility-pane" id="documents" aria-label="관련 자료">
+        <div class="pane-title">관련 자료</div>
+        <p>배포 설정과 버전 변경에 필요한 문서를 확인할 수 있습니다.</p>
+        <div class="document-links">
+          <button type="button" data-document="release-guide.txt"><span>릴리스 가이드</span><small>배포 정보와 사용 안내</small><b aria-hidden="true">↗</b></button>
+          <button type="button" data-document="migration-notes.txt"><span>마이그레이션 노트</span><small>버전 전환 시 참고 사항</small><b aria-hidden="true">↗</b></button>
+        </div>
+        <div class="utility-note"><span class="note-rule"></span>이 카탈로그는 로컬 실습용 합성 데이터로 구성되어 있습니다.</div>
+      </aside>
+    </div>
+
+    <footer class="page-footer"><span>ReleaseHub · 로컬 제품 릴리스 카탈로그</span><a href="/go?next=/#top">맨 위로 <span aria-hidden="true">↑</span></a></footer>
+  </main>
+
+  <dialog id="release-dialog" class="modal" aria-labelledby="detail-name">
+    <div class="modal-header"><span>릴리스 상세</span><button id="close-release-dialog" type="button" aria-label="닫기">×</button></div>
+    <div class="release-detail">
+      <p id="detail-channel"></p>
+      <h2 id="detail-name"></h2>
+      <div class="detail-meta"><time id="detail-date"></time><span id="detail-version"></span></div>
+      <div class="detail-rule"></div>
+      <p id="detail-summary"></p>
+    </div>
+  </dialog>
+  <dialog id="document-dialog" class="modal" aria-labelledby="document-title">
+    <div class="modal-header"><span id="document-title">문서</span><button id="close-dialog" type="button" aria-label="닫기">×</button></div>
+    <pre id="document-body"></pre>
+  </dialog>
+</body>
+</html>

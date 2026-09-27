@@ -1,0 +1,29 @@
+# Only publish the S2R Review application and its sample projects.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/s2r-review/
+!/samples/
+
+# Local analysis results, sample accounts, databases, logs and process records.
+/s2r-review-data/
+/samples/*-runtime/
+**/*.log
+**/*.sqlite3*
+**/*.db
+**/.env
+**/.env.*
+
+# Local interpreters, caches and build outputs.
+**/.venv*/
+**/venv/
+**/__pycache__/
+**/.pytest_cache/
+**/*.py[cod]
+**/target/
+**/.idea/
+
+# Execution notes tied to a local test session.
+/s2r-review/VERIFICATION.md
+/samples/teamshelf-evaluation/verification.md

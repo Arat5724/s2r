@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c1830">
+  <meta name="description" content="TechLab Registry에서 팀의 개발 도구, SDK, 라이브러리와 디자인 자산을 찾아보세요.">
+  <title>TechLab Registry · 개발 도구와 패키지 카탈로그</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="TechLab Registry 홈"><span class="brand-mark">T</span><span>TechLab<span class="brand-light"> Registry</span></span></a>
+      <nav class="header-nav" aria-label="주요 메뉴">
+        <a class="nav-active" href="#catalog">패키지</a>
+        <a href="/go?next=%2Fapi%2Ffiles%3Fname%3Dguide.txt">시작 가이드</a>
+        <a href="/api/files?name=release-notes.txt">릴리스 노트</a>
+      </nav>
+      <div class="header-actions"><span class="status-chip" id="service-status"><span class="status-dot"></span><span>서비스 확인 중</span></span><a class="header-cta" href="#catalog">카탈로그 둘러보기 <span aria-hidden="true">↗</span></a></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <div class="hero-kicker"><span class="kicker-line"></span> DEVELOPMENT RESOURCE HUB <span class="kicker-version">v1.0</span></div>
+          <h1 id="hero-title">팀의 빌드를<br><span>더 빠르게.</span></h1>
+          <p>매번 흩어진 저장소를 찾을 필요 없이, 검증된 도구와 컴포넌트를 한곳에서 확인하세요. 필요한 패키지를 찾고 다음 빌드에 바로 연결할 수 있습니다.</p>
+          <div class="hero-buttons"><a class="button button-light" href="#catalog">패키지 탐색하기 <span aria-hidden="true">↗</span></a><a class="button button-ghost" href="/api/files?name=guide.txt">시작 가이드 읽기 <span aria-hidden="true">→</span></a></div>
+          <div class="hero-meta"><span><span class="hero-meta-dot"></span> 공개 카탈로그</span><span>CLI · SDK · 라이브러리 · 자산</span></div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="visual-card visual-card-back"><div class="tiny-label">REGISTRY / PACKAGES</div><div class="code-line long"></div><div class="code-line medium"></div><div class="code-line short"></div></div>
+          <div class="visual-card visual-card-front"><div class="visual-card-head"><span class="visual-app-icon">▥</span><span><strong>Atlas CLI</strong><small>Tooling / v1.4.0</small></span><span class="live-dot"></span></div><div class="visual-separator"></div><div class="terminal-line"><span>GET</span> /api/products?q=Atlas</div><div class="terminal-success">✓ Package metadata available</div></div>
+          <span class="visual-float visual-float-one">{ }</span><span class="visual-float visual-float-two">//</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics container" aria-label="카탈로그 현황">
+      <div class="metric"><span class="metric-icon metric-icon-green">▦</span><div><strong id="metric-packages">—</strong><span>등록된 패키지</span></div></div>
+      <div class="metric"><span class="metric-icon metric-icon-blue">◇</span><div><strong>4</strong><span>리소스 카테고리</span></div></div>
+      <div class="metric"><span class="metric-icon metric-icon-violet">↗</span><div><strong>v4.2.0</strong><span>최신 릴리스</span></div></div>
+      <div class="metric metric-link"><span class="metric-icon metric-icon-orange">≡</span><div><strong>Release notes</strong><a href="/api/files?name=release-notes.txt">최근 변경 사항 확인 <span aria-hidden="true">↗</span></a></div></div>
+    </section>
+
+    <section id="catalog" class="catalog-section container" aria-labelledby="catalog-title">
+      <div class="section-heading"><div><div class="eyebrow"><span class="eyebrow-dot"></span> EXPLORE THE REGISTRY</div><h2 id="catalog-title">필요한 도구를 찾아보세요.</h2><p>개발 워크플로에 맞는 패키지를 검색하거나 카테고리별로 둘러보세요.</p></div><a class="api-link" href="/api/products">Catalog API <span aria-hidden="true">↗</span></a></div>
+
+      <div class="catalog-controls">
+        <form id="search-form" class="search-box" role="search"><label class="sr-only" for="search-input">패키지 검색</label><span class="search-icon" aria-hidden="true">⌕</span><input id="search-input" type="search" name="q" placeholder="패키지 이름으로 검색하세요" maxlength="80" autocomplete="off"><button type="submit">검색</button></form>
+        <a id="preview-link" class="preview-link" href="/search/preview">검색 미리보기 <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="filter-bar" role="group" aria-label="카테고리 필터"><button type="button" class="filter-chip active" data-category="" aria-pressed="true">전체 <span class="filter-count" id="all-count">—</span></button><button type="button" class="filter-chip" data-category="cli" aria-pressed="false">CLI</button><button type="button" class="filter-chip" data-category="sdk" aria-pressed="false">SDK</button><button type="button" class="filter-chip" data-category="library" aria-pressed="false">라이브러리</button><button type="button" class="filter-chip" data-category="asset" aria-pressed="false">디자인 자산</button></div>
+
+      <div class="result-bar"><span id="result-summary" aria-live="polite">패키지를 불러오는 중입니다.</span><span class="result-sort">이름순 정렬 <span aria-hidden="true">↓</span></span></div>
+      <div id="package-grid" class="package-grid" aria-live="polite"><div class="loading-card"></div><div class="loading-card"></div><div class="loading-card"></div></div>
+      <div id="empty-state" class="empty-state" hidden><div class="empty-icon">⌕</div><h3>검색 결과가 없습니다</h3><p>다른 검색어를 입력하거나 카테고리를 바꿔보세요.</p><button id="clear-filters" class="button button-primary" type="button">전체 패키지 보기</button></div>
+      <div id="error-state" class="empty-state" hidden><div class="empty-icon">!</div><h3>카탈로그를 불러오지 못했습니다</h3><p>연결을 확인하고 다시 시도해 주세요.</p><button id="retry-load" class="button button-primary" type="button">다시 시도</button></div>
+    </section>
+
+    <section class="resource-section" aria-labelledby="resource-title"><div class="container resource-inner"><div class="resource-copy"><div class="eyebrow"><span class="eyebrow-dot"></span> GET STARTED</div><h2 id="resource-title">첫 빌드부터 배포까지,<br>필요한 정보를 빠르게.</h2><p>패키지 설치부터 버전 변경 내역까지, 팀에서 자주 찾는 자료를 모았습니다.</p></div><div class="resource-links"><a class="resource-card" href="/go?next=%2Fapi%2Ffiles%3Fname%3Dguide.txt"><span class="resource-symbol">⌘</span><span><strong>시작 가이드</strong><small>설치와 사용 방법 살펴보기</small></span><span class="resource-arrow">↗</span></a><a class="resource-card" href="/api/files?name=release-notes.txt"><span class="resource-symbol">≡</span><span><strong>릴리스 노트</strong><small>최근 패키지 변경 사항 확인</small></span><span class="resource-arrow">↗</span></a></div></div></section>
+  </main>
+
+  <dialog id="package-dialog" class="package-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><span class="dialog-label">PACKAGE DETAILS</span><button id="dialog-close" class="dialog-close" aria-label="닫기" type="button">×</button></div><div class="dialog-body"><div class="dialog-icon" id="dialog-icon"></div><div class="dialog-category" id="dialog-category"></div><h2 id="dialog-title"></h2><p id="dialog-description"></p><div class="dialog-info"><div><span>현재 버전</span><strong id="dialog-version"></strong></div><div><span>상태</span><strong>공개</strong></div></div><div class="install-box"><span>API 조회 예시</span><code id="dialog-command"></code><button id="copy-command" type="button">복사</button></div><a class="dialog-doc-link" href="/api/files?name=guide.txt">패키지 사용 가이드 읽기 <span aria-hidden="true">→</span></a></div></dialog>
+
+  <footer class="site-footer"><div class="container footer-inner"><div><a class="brand footer-brand" href="/"><span class="brand-mark">T</span><span>TechLab<span class="brand-light"> Registry</span></span></a><p>좋은 도구가 좋은 제품을 만듭니다.</p></div><div class="footer-links"><a href="#catalog">패키지</a><a href="/api/files?name=guide.txt">가이드</a><a href="/api/files?name=release-notes.txt">릴리스 노트</a><a href="/api/products">API</a></div><div class="footer-bottom">© 2026 TechLab Registry. Built for builders.</div></div></footer>
+</body>
+</html>

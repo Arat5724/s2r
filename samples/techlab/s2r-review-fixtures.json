@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "probe_files": [
+    {
+      "path": "app/data/public/guide.txt",
+      "purpose": "public_control"
+    },
+    {
+      "path": "app/data/private/canary.txt",
+      "purpose": "synthetic_canary",
+      "marker": "TECHLAB_PRIVATE_CANARY"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+*.sh text eol=lf
+samples/spring-releasehub/mvnw text eol=lf

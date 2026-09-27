@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "revision": "teamshelf-1.0.0",
+  "default_active_count": 15,
+  "optional_count": 1,
+  "excluded_framework_routes": ["/openapi.json", "/static/*"],
+  "endpoints": [
+    {"method":"GET","path":"/","handler":"app/main.py:home","auth":"public","changes_business_state":false,"inputs":[]},
+    {"method":"GET","path":"/search/preview","handler":"app/main.py:search_preview","auth":"public","changes_business_state":false,"inputs":["query.q"]},
+    {"method":"GET","path":"/health","handler":"app/main.py:health","auth":"public","changes_business_state":false,"inputs":[]},
+    {"method":"GET","path":"/api/meta","handler":"app/main.py:meta","auth":"public","changes_business_state":false,"inputs":[]},
+    {"method":"POST","path":"/api/auth/login","handler":"app/routers/auth.py:login","auth":"public","changes_business_state":false,"changes_session_state":true,"inputs":["body.email","body.password"]},
+    {"method":"POST","path":"/api/auth/logout","handler":"app/routers/auth.py:logout","auth":"authenticated","changes_business_state":false,"changes_session_state":true,"inputs":["header.Authorization"]},
+    {"method":"GET","path":"/api/me","handler":"app/routers/auth.py:me","auth":"authenticated","changes_business_state":false,"inputs":["header.Authorization"]},
+    {"method":"GET","path":"/api/products","handler":"app/routers/products.py:list_products","auth":"public","changes_business_state":false,"inputs":["query.q","query.category"]},
+    {"method":"GET","path":"/api/products/{product_id}","handler":"app/routers/products.py:product_detail","auth":"public","changes_business_state":false,"inputs":["path.product_id"]},
+    {"method":"GET","path":"/api/orders","handler":"app/routers/orders.py:list_orders","auth":"authenticated; own orders only","changes_business_state":false,"inputs":["header.Authorization"]},
+    {"method":"POST","path":"/api/orders","handler":"app/routers/orders.py:submit_order","auth":"authenticated","changes_business_state":true,"inputs":["header.Authorization","body.product_id","body.quantity","body.note"],"call_chain":["services/orders.py:create_order","repositories.py:product_by_id","repositories.py:insert_order","repositories.py:order_by_id"]},
+    {"method":"GET","path":"/api/orders/{order_id}","handler":"app/routers/orders.py:order_detail","auth":"owner or admin","changes_business_state":false,"inputs":["header.Authorization","path.order_id"],"call_chain":["dependencies.py:current_user","services/orders.py:visible_order","repositories.py:order_by_id"]},
+    {"method":"POST","path":"/api/orders/{order_id}/cancel","handler":"app/routers/orders.py:cancel","auth":"owner; pending orders only","changes_business_state":true,"inputs":["header.Authorization","path.order_id"],"call_chain":["services/orders.py:cancel_order","services/orders.py:visible_order","services/orders.py:change_status","repositories.py:transition_order"]},
+    {"method":"GET","path":"/api/admin/orders","handler":"app/routers/admin.py:list_all_orders","auth":"admin via router dependency","changes_business_state":false,"inputs":["header.Authorization"],"call_chain":["dependencies.py:require_admin","dependencies.py:current_user","repositories.py:find_orders"]},
+    {"method":"PATCH","path":"/api/admin/orders/{order_id}/status","handler":"app/routers/admin.py:update_status","auth":"admin via router dependency; pending orders only","changes_business_state":true,"inputs":["header.Authorization","path.order_id","body.status"],"call_chain":["dependencies.py:require_admin","services/orders.py:change_status","repositories.py:transition_order"]},
+    {"method":"GET","path":"/api/reports/summary","handler":"app/routers/reports.py:summary","auth":"admin via router dependency","changes_business_state":false,"enabled_when":"TEAMSHELF_ENABLE_REPORTS=1 or run.py --reports","inputs":["header.Authorization"]}
+  ]
+}

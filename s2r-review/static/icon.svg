@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="S2R Review">
+  <defs><linearGradient id="mark" x1="7" y1="6" x2="32" y2="34" gradientUnits="userSpaceOnUse"><stop stop-color="#b6b2ff"/><stop offset="1" stop-color="#7772ef"/></linearGradient></defs>
+  <rect width="40" height="40" rx="10" fill="#24232e"/>
+  <rect x=".5" y=".5" width="39" height="39" rx="9.5" fill="none" stroke="#454251"/>
+  <path d="M11 12.5h18L11 27.5h18" fill="none" stroke="url(#mark)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="11" cy="12.5" r="2.3" fill="#edeaff"/>
+  <circle cx="29" cy="27.5" r="2.3" fill="#edeaff"/>
+</svg>
